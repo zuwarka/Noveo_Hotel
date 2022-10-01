@@ -1,0 +1,40 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: orange;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+#logo:hover {
+  color: darkgrey;
+  text-decoration: none;
+}
+.review-actions {
+  border-top: 1px solid #eaeaea;
+  padding-top: 5px;
+}
+.review-title {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.review-body {
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.review-meta-details {
+  border-top: 1px solid #eaeaea;
+  margin-top: 15px;
+}
+.description {
+  margin-top: 0;
+}
+.listing {
+  list-style: none;
+  padding-left: 0;
+}

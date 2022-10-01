@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-  has_many :rooms
+  belongs_to :room
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :username,
             presence: true,
