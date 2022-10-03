@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  #before_action :set_review, only: %i[show]
   def index
     @reviews = published_desc_reviews
     @review = Review.new
@@ -19,7 +18,7 @@ class ReviewsController < ApplicationController
     else
       flash.now[:error] = "Some errors in the form have appeared"
       @review = published_desc_reviews
-      render 'index'
+      render 'reviews/index'
     end
   end
 
@@ -30,8 +29,7 @@ class ReviewsController < ApplicationController
   end
 
   def set_review
-    @review = Review.find_by(id: params[:id].to_i)
-    #@review = Review.where(id: params[:id]).all
+    @review = Review.find(params[:id])
   end
 
   def published_desc_reviews
