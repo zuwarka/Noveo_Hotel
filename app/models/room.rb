@@ -1,6 +1,6 @@
 class Room < ApplicationRecord
   has_many :booking
-  has_many_attached :photos, dependent: :destroy
+  has_many :room_photos, dependent: :destroy
 
   validates :title,
             presence: true,

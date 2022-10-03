@@ -33,6 +33,6 @@ class ReviewsController < ApplicationController
   end
 
   def published_desc_reviews
-    Review.all.where(published: true).order(created_at: :desc)
+    Review.all.where(published: :true).order(created_at: :desc)
   end
 end

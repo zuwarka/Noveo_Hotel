@@ -1,5 +1,5 @@
 class Admin::RoomsController < ApplicationController
-  before_action :set_room, only: %i[show]
+  before_action :set_room, except: %i[index new create]
   def index
     @admin_rooms = all_desc_rooms
   end
@@ -9,7 +9,7 @@ class Admin::RoomsController < ApplicationController
   end
 
   def new
-    @admin_room = Admin::Room.new
+    @admin_room = Room.new
   end
 
   def edit
@@ -17,7 +17,7 @@ class Admin::RoomsController < ApplicationController
   end
 
   def create
-    @admin_room = Admin::Room.new(room_params)
+    @admin_room = Room.new(admin_room_params)
     if @admin_room.save
       add_room_photos
       flash[:success] = "Room was added"
@@ -29,7 +29,7 @@ class Admin::RoomsController < ApplicationController
   end
 
   def update
-    if @admin_room.update(room_params)
+    if @admin_room.update(admin_room_params)
       add_room_photos
       flash[:success] = "Room was updated"
       redirect_to admin_room_url(@admin_room)
@@ -48,14 +48,14 @@ class Admin::RoomsController < ApplicationController
   private
 
   def set_room
-    @admin_room = Admin::Room.find(params[:id])
+    @admin_room = Room.find(params[:id])
   end
 
   def all_desc_rooms
-    Admin::Room.all.order(created_at: :desc)
+    Room.all.order(created_at: :desc)
   end
 
-  def room_params
+  def admin_room_params
     params.require(:room).permit(:title, :description, :price)
   end
 

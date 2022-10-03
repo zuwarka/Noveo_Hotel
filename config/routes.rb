@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
-    resources :bookings
-    resources :reviews
+    resources :bookings, only: %i[index show update destroy]
+    resources :reviews, only: %i[index show update destroy]
     resources :rooms
   end
 
   root 'pages#index'
   get 'about', to: 'pages#about'
   resources :bookings
-  resources :rooms
-  resources :reviews
-  resources :room_photos
+  resources :rooms, only: %i[index show]
+  resources :reviews, only: %i[index show create]
+  resources :room_photos, except: :new
 end

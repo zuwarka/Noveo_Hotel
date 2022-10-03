@@ -1,0 +1,38 @@
+<%= form_with(model: @admin_room, html: { multipart: true }) do |form| %>
+  <% if @admin_room.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@admin_room.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <ul>
+        <% @admin_room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <%= form.fields_for @admin_room.room_photos.build do |p| %>
+    <div class="field">
+      <%= p.label :add_photos %><br>
+      <%= p.file_field :photo, :multiple => true, name: "room_photos[photo][]" %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
