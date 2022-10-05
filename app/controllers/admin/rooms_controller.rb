@@ -1,15 +1,15 @@
 class Admin::RoomsController < ApplicationController
   before_action :set_room, except: %i[index new create]
   def index
-    @admin_rooms = all_desc_rooms
+    @rooms = Room.all.order(created_at: :desc)
   end
 
   def show
-    @room_photos = @admin_room.room_photos.all
+    @room_photos = @room.room_photos.all
   end
 
   def new
-    @admin_room = Room.new
+    @room = Room.new
   end
 
   def edit
@@ -17,51 +17,46 @@ class Admin::RoomsController < ApplicationController
   end
 
   def create
-    @admin_room = Room.new(admin_room_params)
-    if @admin_room.save
-      add_room_photos
-      flash[:success] = "Room was added"
-      redirect_to admin_room_url(@admin_room)
-    else
-      flash.now[:error] = "Some errors in the form have appeared"
-      render :new
+    @room = Room.new(admin_room_params)
+    add_room_photos
+    respond_to do |f|
+      if @room.save
+        f.html { redirect_to admin_rooms_url(@room), notice: "Room was created." }
+      else
+        f.html { render :new, status: :bad_request }
+      end
     end
   end
 
   def update
-    if @admin_room.update(admin_room_params)
-      add_room_photos
-      flash[:success] = "Room was updated"
-      redirect_to admin_room_url(@admin_room)
-    else
-      flash.now[:error] = "Some errors in the form have appeared"
-      render :edit
+    add_room_photos
+    respond_to do |f|
+      if @room.update(admin_room_params)
+        f.html { redirect_to admin_rooms_url(@room), notice: "Room was updated." }
+      else
+        f.html { render :edit, status: :bad_request }
+      end
     end
   end
 
   def destroy
-    @admin_room.destroy
-    flash[:success] = "Room was destroyed"
-    redirect_to admin_room_url
+    @room.destroy
+    respond_to do |f|
+      f.html { redirect_to rooms_url, notice: "Room was destroyed." }
+    end
   end
 
   private
 
   def set_room
-    @admin_room = Room.find(params[:id])
-  end
-
-  def all_desc_rooms
-    Room.all.order(created_at: :desc)
+    @room = Room.find(params[:id])
   end
 
   def admin_room_params
-    params.require(:room).permit(:title, :description, :price)
+    params.require(:room).permit(:title, :description, :price, room_photos: [])
   end
 
   def add_room_photos
-    params[:room_photos]['photo'].each do |example|
-      @room_photo = @admin_room.room_photos.create!(:photo => example, :room_id => @room.id) if example != ""
-    end
+    @room.room_photos.attach(params[:room_photos])
   end
 end

@@ -1,16 +1,16 @@
-<%= render @admin_room %>
+<%= render @room %>
 
 <div>
-  <%= link_to "Edit room", edit_admin_room_path(@admin_room) %> |
-  <% @admin_room.room_photos.each_with_index do |p, index| %>
-    <%= link_to "Edit photo #{index + 1}", edit_room_photo_path(p) %> |
+  <%= link_to "Edit room", edit_admin_room_path(@room) %> |
+  <% @room.room_photos.each_with_index do |photo, index| %>
+  <%= link_to "Edit photo #{index + 1}", edit_room_photo_path(photo) %> |
   <% end %>
   <%= link_to "Back to other rooms", admin_rooms_path %>
 </div>
-<hr/>
+
 <div>
-  <%= button_to "Delete room", @admin_room, method: :delete %>
-  <% @admin_room.room_photos.each_with_index do |p, index| %>
-    | <%= button_to "Delete photo #{index + 1}", p, method: :delete %>
+  <%= button_to "Delete room", @room, method: :delete %>
+  <% @room.room_photos.each_with_index do |photo, index| %>
+  | <%= button_to "Delete photo #{index + 1}", photo, method: :delete %>
   <% end %>
 </div>

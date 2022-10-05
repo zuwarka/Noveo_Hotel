@@ -1,32 +1,33 @@
-<%= 'No room at all' if @rooms.empty? %>
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
-    <div class="well well-lg">
-      <div class="review-username">
-        <%= truncate(room.title, length: 100) %>
-      </div>
-      <div class="review-body">
-        <%= truncate(room.description, length: 100) %>
-      </div>
-      <div class="review-price">
-        <%= truncate(room.price, length: 100) %>
-      </div>
-      <% room.room_photos.each_with_index do |p, index| %>
-        <%= image_tag p.photo_url if params[:action] == "index" and index == 0 or params[:action] == "show" %>
-      <% end %>
 
-      <div>
-        <% if params[:action] == "show" %>
-          <%= link_to "Back to other rooms", rooms_path %>
-        <% elsif params[:action] == "index" %>
-          <%= link_to "Show more", room_path(room) %>
-        <% end %>
-      </div>
-      <p>
-        <%= link_to "Book this room", room %>
-      </p>
-    </div>
-  </div>
+<div id="<%= dom_id room %>">
+  <p>
+    <strong>Room name:</strong>
+    <%= room.title %>
+  </p>
+
+  <p>
+    <strong>Short description:</strong>
+    <%= room.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= room.price %>
+  </p>
+
+  <% room.room_photos.each_with_index do |p, index| %>
+    <%= image_tag p.room_photo if params[:action] == "index" and index == 0 or params[:action] == "show" %>
+  <% end %>
 </div>
 
 
+<div>
+  <% if params[:action] == "show" %>
+    <%= link_to "Back to rooms", rooms_path %>
+  <% elsif params[:action] == "index" %>
+    <%= link_to "Show this room", room_path(room) %>
+  <% end %>
+</div>
+<p>
+  <%= link_to "Booking this room", room %>
+</p>

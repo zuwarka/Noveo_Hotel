@@ -1,18 +1,21 @@
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
-    <div class="well well-lg">
-      <div class="review-username">
-        <%= truncate(room.title, length: 100) %>
-      </div>
-      <div class="review-body">
-        <%= truncate(room.description, length: 100) %>
-      </div>
-      <div class="review-price">
-        <%= truncate(room.price, length: 100) %>
-      </div>
-      <% @room_photos.each do |p| %>
-        <%= image_tag p.photo_url %>
-      <% end %>
-    </div>
-  </div>
+<div id="<%= dom_id room %>">
+  <p>
+    <strong>Title:</strong>
+    <%= room.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= room.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= room.price %>
+  </p>
+
+  <% @room.room_photos.each do |photo| %>
+  <%= image_tag photo.room_photo %>
+  <% end %>
+
 </div>

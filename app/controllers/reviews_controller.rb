@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     else
       flash.now[:error] = "Some errors in the form have appeared"
       @review = published_desc_reviews
-      render 'reviews/index'
+      render 'reviews/index', status: :bad_request
     end
   end
 

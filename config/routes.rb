@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[index show update destroy]
     resources :reviews, only: %i[index show update destroy]
     resources :rooms
+    #post 'new', to: 'rooms#create'
   end
 
   root 'pages#index'
