@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_073847) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_114821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,13 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_073847) do
   create_table "bookings", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "confirmed", default: false, null: false
-    t.string "check_in", null: false
-    t.string "check_out", null: false
+    t.date "check_in", null: false
+    t.date "check_out", null: false
     t.integer "people", null: false
     t.integer "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -87,11 +87,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_073847) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "rooms"
 end

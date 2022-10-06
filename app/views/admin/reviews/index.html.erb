@@ -1,7 +1,7 @@
 <h1>Reviews</h1>
-<% 'No reviews at all' if @admin_reviews.empty? %>
+<% 'No reviews at all' if @reviews.empty? %>
 <div id="admin_reviews">
-  <% @admin_reviews.each do |admin_review| %>
+  <% @reviews.each do |admin_review| %>
     <%= render admin_review %>
   <% end %>
 </div>

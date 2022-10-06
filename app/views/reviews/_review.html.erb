@@ -1,12 +1,16 @@
-<%= 'No review at all' if @reviews.empty? %>
+<div>
+  <p>
+    <strong>Username:</strong>
+    <%= review.username %>
+  </p>
 
-<% @reviews.each do |review| %>
-  <div class="well well-lg">
-    <% if review.published %>
-    <%= render review %>
-      <p>
-        <%= link_to "Open review", review %>
-      </p>
-      <% end %>
-  </div>
-<% end %>
+  <p>
+    <strong>Email:</strong>
+    <%= review.email %>
+  </p>
+
+  <p>
+    <strong>Text:</strong>
+    <%= review.description %>
+  </p>
+</div>

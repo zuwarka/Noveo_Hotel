@@ -1,7 +1,7 @@
 class Admin::BookingsController < ApplicationController
-  before_action :set_booking, except: %i[index]
+  before_action :set_booking, only: %i[show edit update destroy confirmation]
   def index
-    @admin_bookings = admin_desc_booking
+    @bookings = Booking.all.order(created_at: :desc)
   end
 
   def show
@@ -9,28 +9,38 @@ class Admin::BookingsController < ApplicationController
   end
 
   def update
-    if @admin_booking.update(confirmed: :true)
-      flash[:success] = "Book for room was updated."
-      redirect_to admin_booking_path
-    else
-      flash.now[:error] = "Some error has appeared."
-      redirect_to admin_booking_path
+    respond_to do |f|
+      if @booking.update(booking_params)
+        f.html { redirect_to booking_url(@booking), notice: "Booking was updated." }
+      else
+        f.html { render :new, status: :bad_request }
+      end
     end
   end
 
   def destroy
-    @admin_booking.destroy
-    flash[:success] = "Book for room was destroyed."
-    redirect_to admin_booking_path
+    @booking.destroy
+    respond_to do |f|
+      f.html { redirect_to bookings_url, notice: "Booking was destroyed." }
+    end
+  end
+
+  def confirmation
+    if @booking.pended?
+      @booking.confirmed = true
+    elsif @booking.confirmed?
+      @booking.pended!
+    end
+
   end
 
   private
 
   def set_booking
-    @admin_booking= Review.find(params[:id])
+    @booking = Review.find(params[:id])
   end
 
-  def admin_desc_booking
-    Booking.all.where(confirmed: :false).order(created_at: :desc)
+  def booking_params
+    params.require(:booking).permit(:username, :email, :check_in, :check_out, :people, :room_id)
   end
 end

@@ -1,0 +1,10 @@
+<h1>Editing booking</h1>
+
+<%= render "form", booking: @booking %>
+
+<br>
+
+<div>
+  <%= link_to "Open booking", @booking %> |
+  <%= link_to "Back to other bookings", bookings_path %>
+</div>

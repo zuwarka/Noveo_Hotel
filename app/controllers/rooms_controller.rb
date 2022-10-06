@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room_photos = @room.room_photos.all
+    @room.room_photos.all
   end
 
   private

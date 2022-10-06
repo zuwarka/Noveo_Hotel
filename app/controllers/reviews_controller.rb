@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
       flash[:success] = "Your review was created. It will appear in Reviews after approval."
       redirect_to review_path(@review)
     else
-      flash.now[:error] = "Some errors in the form have appeared"
+      flash.now[:danger] = "Some errors in the form have appeared"
       @review = published_desc_reviews
       render 'reviews/index', status: :bad_request
     end
