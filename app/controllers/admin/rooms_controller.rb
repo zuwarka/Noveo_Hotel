@@ -17,7 +17,7 @@ class Admin::RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(admin_room_params)
+    @room = Room.new(room_params)
     add_room_photos
     respond_to do |f|
       if @room.save
@@ -31,7 +31,7 @@ class Admin::RoomsController < ApplicationController
   def update
     add_room_photos
     respond_to do |f|
-      if @room.update(admin_room_params)
+      if @room.update(room_params)
         f.html { redirect_to admin_rooms_url(@room), notice: "Room was updated." }
       else
         f.html { render :edit, status: :bad_request }
@@ -52,7 +52,7 @@ class Admin::RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  def admin_room_params
+  def room_params
     params.require(:room).permit(:title, :description, :price, room_photos: [])
   end
 

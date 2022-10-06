@@ -15,11 +15,11 @@
     <%= room.price %>
   </p>
 
-  <% room.room_photos.each_with_index do |p, index| %>
-    <%= image_tag p.room_photo if params[:action] == "index" and index == 0 or params[:action] == "show" %>
+  <hr />
+  <% room.room_photos.each do |photo| %>
+    <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
   <% end %>
 </div>
-
 
 <div>
   <% if params[:action] == "show" %>

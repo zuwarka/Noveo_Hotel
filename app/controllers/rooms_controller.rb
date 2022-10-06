@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[show]
   def index
-    @rooms = all_desc_rooms
+    @rooms = Room.all.order(created_at: :desc)
   end
 
   def show
@@ -12,9 +12,5 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
-  end
-
-  def all_desc_rooms
-    Room.all.order(created_at: :desc)
   end
 end

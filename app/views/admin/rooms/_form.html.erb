@@ -26,12 +26,8 @@
   </div>
 
   <div>
-    <%= form.fields_for @room.room_photos.build do |photo| %>
-      <div class="field">
-        <%= photo.label :room_photo %>
-        <%= photo.file_field :room_photo, :multiple => true %>
-      </div>
-    <% end %>
+    <%= form.label :room_photos %>
+    <%= form.file_field :room_photos, multiple: true %>
   </div>
 
   <div>

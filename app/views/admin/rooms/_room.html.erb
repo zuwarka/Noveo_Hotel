@@ -14,8 +14,9 @@
     <%= room.price %>
   </p>
 
-  <% @room.room_photos.each do |photo| %>
-  <%= image_tag photo.room_photo %>
+  <hr />
+  <% room.room_photos.each do |photo| %>
+    <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
   <% end %>
 
 </div>
