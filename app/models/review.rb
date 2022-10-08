@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
+  enum status: { pended: 0, published: 1 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :username,
             presence: true,

@@ -6,11 +6,8 @@
 
 <% @reviews.each do |review| %>
   <div class="well well-lg">
-    <% if review.published %>
+    <% if review.published? %>
       <%= render review %>
-      <p>
-        <%= link_to "Open review", review %>
-      </p>
     <% end %>
   </div>
 <% end %>

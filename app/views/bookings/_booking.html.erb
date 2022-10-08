@@ -1,6 +1,6 @@
 <div id="<%= dom_id booking %>">
   <p>
-    <strong>Username:</strong>
+    <strong>Name:</strong>
     <%= booking.username %>
   </p>
 
@@ -28,4 +28,9 @@
     <strong>Room:</strong>
     <%= booking.room_id %>
   </p>
+
+  <hr />
+  <% booking.room.room_photos.each do |photo| %>
+    <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
+  <% end %>
 </div>

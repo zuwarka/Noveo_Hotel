@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[show edit update destroy confirmation]
   def index
     @bookings = Booking.all.order(created_at: :desc)
   end
 
   def show
-    #@booking = @booking.room
+    @room = @booking.room
   end
 
   def new

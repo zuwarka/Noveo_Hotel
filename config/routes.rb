@@ -5,15 +5,30 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
     #get '/users/log_in' => 'devise/sessions#new'
   end
-  root 'pages#index'
-  get 'about', to: 'pages#about'
+  root "pages#index"
+  resources :rooms
   resources :bookings
-  resources :rooms, only: %i[index show]
-  resources :reviews, only: %i[index show create]
+  resources :reviews
 
   namespace :admin do
-    resources :bookings, only: %i[index show update destroy]
-    resources :reviews, only: %i[index show update destroy]
-    resources :rooms
+    resources :reviews do
+      member do
+        get :confirmation
+      end
+    end
+    resources :bookings do
+      member do
+        get :confirmation
+      end
+    end
+    resources :rooms, :bookings, :reviews
+    get '/admin/dashboard', as: :authenticated_root
+    get 'dashboard', to: 'pages#dashboard'
+
+  end
+  unauthenticated :users do
+    namespace :admin do
+      root :to => 'session#new', as: :unauthenticated_root
+    end
   end
 end

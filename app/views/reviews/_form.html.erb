@@ -1,24 +1,15 @@
-
 <%= form_for :review, url: reviews_path, data: { turbo:false } do |form| %>
   <div>
     <%= form.label :username, style: "display: block" %>
-    <% if current_user %>
-      <%= form.text_field :username, value: "#{current_user.email}" %>
-    <% else %>
-      <%= form.text_field :username, autofocus: true %>
-    <% end %>
+    <%= form.text_field :username, autofocus: true %>
   </div>
   <div>
     <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email, value: "#{current_user.email if current_user}" %>
+    <%= form.text_field :email %>
   </div>
   <div>
     <%= form.label :description, style: "display: block" %>
-    <% if current_user %>
-      <%= form.text_area :description, autofocus: true %>
-    <% else %>
-      <%= form.text_area :description %>
-    <% end %>
+    <%= form.text_area :description %>
   </div>
   <div>
     <%= form.submit %>

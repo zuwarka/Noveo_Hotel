@@ -8,8 +8,8 @@ class Room < ApplicationRecord
   validates :description,
             presence: true,
             length: { minimum: 10, maximum: 5000 }
-  #validates :price,
-  #presence: true,
-  #format: { with: /\A\d+(?:\.\d{0, 2})?\z/ },
-  #numericality: { greater_than: 0, less_than: BigDecimal(10**9) }
+
+  def self.available_rooms(check_in, check_out)
+    Booking.excluded_id(check_in, check_out)
+  end
 end
