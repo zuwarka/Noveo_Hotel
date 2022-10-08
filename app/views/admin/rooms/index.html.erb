@@ -1,0 +1,23 @@
+<h1>Table of rooms</h1>
+
+<%= link_to "Add new room", new_admin_room_path %>
+
+<table border="2">
+  <tr>
+    <th>Room title</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Update</th>
+    <th>Destroy</th>
+  </tr>
+  <% @rooms.each do |admin_room| %>
+    <tr>
+      <td><%= admin_room.title %></td>
+      <td><%= admin_room.created_at %></td>
+      <td><%= admin_room.updated_at %></td>
+      <td><%= button_to "Open", admin_room_path(admin_room), method: :get %></td>
+      <td><%= button_to "Update", edit_admin_room_path(admin_room), method: :get %></td>
+      <td><%= button_to "Destroy", admin_room_path(admin_room), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

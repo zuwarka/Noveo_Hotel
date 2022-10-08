@@ -1,0 +1,33 @@
+
+<div id="<%= dom_id room %>">
+  <p>
+    <strong>Room name:</strong>
+    <%= room.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= room.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= room.price %>
+  </p>
+
+  <hr />
+  <% room.room_photos.each do |photo| %>
+    <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
+  <% end %>
+</div>
+
+<div>
+  <% if params[:action] == "show" %>
+    <%= link_to "Back to rooms", rooms_path %>
+  <% elsif params[:action] == "index" %>
+    <%= link_to "Show this room", room_path(room) %>
+  <% end %>
+</div>
+<p>
+  <%= link_to "Booking this room", new_booking_path(room: room) %>
+</p>

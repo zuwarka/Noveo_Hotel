@@ -1,0 +1,17 @@
+<%= form_for :review, url: reviews_path, data: { turbo:false } do |form| %>
+  <div>
+    <%= form.label :username, style: "display: block" %>
+    <%= form.text_field :username, autofocus: true %>
+  </div>
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

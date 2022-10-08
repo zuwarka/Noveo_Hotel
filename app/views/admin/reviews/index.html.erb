@@ -1,0 +1,26 @@
+<h1>Table of reviews</h1>
+
+<table border="2">
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Status</th>
+    <th>Destroy</th>
+  </tr>
+  <% @reviews.each do |admin_review| %>
+    <tr>
+      <td><%= admin_review.username %></td>
+      <td><%= admin_review.email %></td>
+      <td><%= admin_review.description %></td>
+      <td><%= admin_review.status %></td>
+      <td><%= admin_review.created_at %></td>
+      <td><%= admin_review.updated_at %></td>
+      <td><%= button_to "Confirm", confirmation_admin_review_path(admin_review), method: :get, class: "btn btn-xs btn-warning" %></td>
+      <td><%= button_to "Destroy", admin_review_path(admin_review), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

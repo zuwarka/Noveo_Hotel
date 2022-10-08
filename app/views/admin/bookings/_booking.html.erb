@@ -1,0 +1,41 @@
+<div class="well well-lg">
+  <div id="<%= dom_id booking %>">
+    <p>
+      <strong>Username:</strong>
+      <%= booking.username %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= booking.email %>
+    </p>
+
+    <p>
+      <strong>Check in:</strong>
+      <%= booking.check_in %>
+    </p>
+
+    <p>
+      <strong>Check out:</strong>
+      <%= booking.check_out %>
+    </p>
+
+    <p>
+      <strong>Number of people:</strong>
+      <%= booking.people %>
+    </p>
+
+    <p>
+      <strong>Room:</strong>
+      <%= booking.room_id %>
+    </p>
+
+    <p>
+      <br/>
+      <%= button_to "Confirmed this booking", admin_booking_path(booking), method: :put, class: 'btn btn-warning' %>
+      <br/>
+      <%= button_to "Cancel this booking", admin_booking_path(booking), method: :delete, class: 'btn btn-danger' %>
+    </p>
+
+  </div>
+</div>

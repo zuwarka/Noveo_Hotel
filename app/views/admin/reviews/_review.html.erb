@@ -1,0 +1,27 @@
+<div class="well well-lg">
+  <% unless review.published %>
+    <div id="<%= dom_id review %>">
+      <p>
+        <strong>Name:</strong>
+        <%= review.username %>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <%= review.email %>
+      </p>
+
+      <p>
+        <strong>Review:</strong>
+        <%= review.description %>
+      </p>
+
+      <p>
+        <br/>
+        <%= button_to "Publish this review", admin_review_path(review), method: :put, class: 'btn btn-warning' %>
+        <br/>
+        <%= button_to "Destroy this review", admin_review_path(review), method: :delete, class: 'btn btn-danger' %>
+      </p>
+    </div>
+  <% end %>
+</div>

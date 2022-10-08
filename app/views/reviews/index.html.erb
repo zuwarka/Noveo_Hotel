@@ -1,0 +1,13 @@
+<h1 align="left">Leave feedback for other guests</h1>
+
+<%= render "form", review: @review %>
+
+<h2 align="left">What our guests tell about us?</h2>
+
+<% @reviews.each do |review| %>
+  <div class="well well-lg">
+    <% if review.published? %>
+      <%= render review %>
+    <% end %>
+  </div>
+<% end %>

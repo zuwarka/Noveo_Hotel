@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -40,6 +40,24 @@ gem 'devise'
 
 gem 'carrierwave', '~> 2.0'
 
+gem 'mini_magick'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'sassc-rails', '>= 2.1.2'
+
+gem 'jquery-rails'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'will_paginate', '3.3.1'
+
+gem 'bootstrap-will_paginate', '1.0.0'
+
+gem 'image_processing', '~> 1.2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -59,3 +77,7 @@ group :test do
 end
 
 gem "sidekiq", "~> 6.5"
+
+gem "httparty"
+
+
