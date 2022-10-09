@@ -1,0 +1,42 @@
+<h3>Exchange rates</h3>
+<script>
+    function CBR_XML_Daily_Ru(rates) {
+        function trend(current, previous) {
+            if (current > previous) return ' ▲';
+            if (current < previous) return ' ▼';
+            return '';
+        }
+
+        var USDrate = rates.Valute.USD.Value.toFixed(4).replace('.', ',');
+        var USD = document.getElementById('USD');
+        USD.innerHTML = USD.innerHTML.replace('00,0000', USDrate);
+        USD.innerHTML += trend(rates.Valute.USD.Value, rates.Valute.USD.Previous);
+
+        var EURrate = rates.Valute.EUR.Value.toFixed(4).replace('.', ',');
+        var EUR = document.getElementById('EUR');
+        EUR.innerHTML = EUR.innerHTML.replace('00,0000', EURrate);
+        EUR.innerHTML += trend(rates.Valute.EUR.Value, rates.Valute.EUR.Previous);
+
+        var AMDrate = rates.Valute.AMD.Value.toFixed(4).replace('.', ',');
+        var AMD = document.getElementById('AMD');
+        AMD.innerHTML = AMD.innerHTML.replace('00,0000', AMDrate);
+        AMD.innerHTML += trend(rates.Valute.AMD.Value, rates.Valute.AMD.Previous);
+
+        var KZTrate = rates.Valute.KZT.Value.toFixed(4).replace('.', ',');
+        var KZT = document.getElementById('KZT');
+        KZT.innerHTML = KZT.innerHTML.replace('00,0000', KZTrate);
+        KZT.innerHTML += trend(rates.Valute.KZT.Value, rates.Valute.KZT.Previous);
+
+        var TRYrate = rates.Valute.TRY.Value.toFixed(4).replace('.', ',');
+        var TRY = document.getElementById('TRY');
+        TRY.innerHTML = TRY.innerHTML.replace('00,0000', TRYrate);
+        TRY.innerHTML += trend(rates.Valute.TRY.Value, rates.Valute.TRY.Previous);
+    }
+</script>
+<link rel="dns-prefetch" href="https://www.cbr-xml-daily.ru/" />
+<script src="//www.cbr-xml-daily.ru/daily_jsonp.js" async></script>
+<div id="USD">US Dollar - 00,0000 rub.</div>
+<div id="EUR">Euro - 00,0000 rub.</div>
+<div id="AMD">Armenian Dram - 00,0000 rub.</div>
+<div id="KZT">Qazaqstan Tenge - 00,0000 rub.</div>
+<div id="TRY">Turkiye Lira - 00,0000 rub.</div>
