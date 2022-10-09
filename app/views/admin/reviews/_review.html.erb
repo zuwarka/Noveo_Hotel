@@ -17,11 +17,6 @@
       </p>
 
       <p>
-        <% if params[:action] == 'index' %>
-          <%= button_to "Open this review", admin_review_path(review), method: :get, class: 'btn btn-info' %>
-        <% elsif params[:action] == 'show' %>
-          <%= button_to "Show all reviews", admin_reviews_path, method: :get, class: 'btn btn-primary' %>
-        <% end %>
         <br/>
         <%= button_to "Publish this review", admin_review_path(review), method: :put, class: 'btn btn-warning' %>
         <br/>

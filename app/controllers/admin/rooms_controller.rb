@@ -1,11 +1,11 @@
 class Admin::RoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_room, except: %i[index new create]
   def index
     @rooms = Room.all.order(created_at: :desc)
   end
 
   def show
-    @room_photos = @room.room_photos.all
   end
 
   def new
@@ -42,7 +42,7 @@ class Admin::RoomsController < ApplicationController
   def destroy
     @room.destroy
     respond_to do |f|
-      f.html { redirect_to rooms_url, notice: "Room was destroyed." }
+      f.html { redirect_to admin_rooms_url, notice: "Room was destroyed." }
     end
   end
 

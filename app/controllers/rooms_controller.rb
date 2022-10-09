@@ -5,7 +5,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room.room_photos.all
+    #@room.room_photos.all
+    @booking = Booking.new
   end
 
   private

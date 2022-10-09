@@ -7,7 +7,6 @@
     <th>Room title</th>
     <th>Created at</th>
     <th>Updated at</th>
-    <th>Show</th>
     <th>Update</th>
     <th>Destroy</th>
   </tr>
@@ -16,7 +15,7 @@
       <td><%= admin_room.title %></td>
       <td><%= admin_room.created_at %></td>
       <td><%= admin_room.updated_at %></td>
-      <td><%= button_to "Show", admin_room_path(admin_room), method: :get %></td>
+      <td><%= button_to "Open", admin_room_path(admin_room), method: :get %></td>
       <td><%= button_to "Update", edit_admin_room_path(admin_room), method: :get %></td>
       <td><%= button_to "Destroy", admin_room_path(admin_room), method: :delete %></td>
     </tr>

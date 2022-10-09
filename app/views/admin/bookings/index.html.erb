@@ -1,7 +1,30 @@
-<h1>Bookings</h1>
+<h1>List of bookings</h1>
 
-<div id="admin_bookings">
+<table border="2">
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Room id</th>
+    <th>Check in</th>
+    <th>Check out</th>
+    <th>Status</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Confirm</th>
+    <th>Destroy</th>
+  </tr>
   <% @bookings.each do |admin_booking| %>
-    <%= render admin_booking %>
+    <tr>
+      <td><%= admin_booking.username %></td>
+      <td><%= admin_booking.email %></td>
+      <td><%= admin_booking.room_id %></td>
+      <td><%= admin_booking.check_in %></td>
+      <td><%= admin_booking.check_out %></td>
+      <td><%= admin_booking.status %></td>
+      <td><%= admin_booking.created_at %></td>
+      <td><%= admin_booking.updated_at %></td>
+      <td><%= button_to "Confirm", confirmation_admin_booking_path(admin_booking), method: :get, class: "btn btn-xs btn-warning" %></td>
+      <td><%= button_to "Destroy", admin_booking_path(admin_booking), method: :delete, class: "btn btn-xs btn-warning" %></td>
+    </tr>
   <% end %>
-</div>
+</table>

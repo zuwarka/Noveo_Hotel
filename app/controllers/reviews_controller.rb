@@ -1,24 +1,27 @@
 class ReviewsController < ApplicationController
+  before_action :set_review, only: %i[show]
   def index
-    @reviews = published_desc_reviews
+    @reviews = Review.all.published.order(created_at: :desc)
     @review = Review.new
   end
 
   def show
-    set_review
+
+  end
+
+  def new
+    @review = Review.new
   end
 
   def create
     @review = Review.new(review_params)
-    @review.published = false
 
-    if @review.save
-      flash[:success] = "Your review was created. It will appear in Reviews after approval."
-      redirect_to review_path(@review)
-    else
-      flash.now[:danger] = "Some errors in the form have appeared"
-      @review = published_desc_reviews
-      render 'reviews/index', status: :bad_request
+    respond_to do |f|
+      if @review.save
+        f.html { redirect_to review_url(@review), notice: "Review was created." }
+      else
+        f.html { render :new }
+      end
     end
   end
 
@@ -30,9 +33,5 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
-  end
-
-  def published_desc_reviews
-    Review.all.where(published: :true).order(created_at: :desc)
   end
 end

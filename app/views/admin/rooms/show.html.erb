@@ -1,1 +1,9 @@
 <%= render @room %>
+<hr/>
+<div>
+  <%= link_to "Back to other rooms", admin_rooms_path %>
+</div>
+<hr/>
+<div>
+  <%= button_to "Destroy this room", @room, method: :delete %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_114821) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_08_101446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,27 +45,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_114821) do
   create_table "bookings", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
-    t.boolean "confirmed", default: false, null: false
+    t.integer "status", default: 0, null: false
     t.date "check_in", null: false
     t.date "check_out", null: false
     t.integer "people", null: false
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_bookings_on_room_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
-    t.text "description", null: false
-    t.boolean "published", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "room_photos", force: :cascade do |t|
-    t.integer "room_id", null: false
-    t.string "photo", null: false
+    t.text "description"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,8 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_114821) do
   create_table "rooms", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.decimal "price", null: false
-    t.boolean "booked", default: false, null: false
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -87,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_114821) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,5 +1,11 @@
-<h1>Welcome to "Noveo" Hotel!</h1>
-<h2>Chose your rooms or read reviews from other guests</h2>
+<% if user_signed_in? %>
+    <div>
+      <h3>Welcome, admin!</h3>
+    </div>
+<% else %>
+  <h1>Welcome to "Noveo" Hotel!</h1>
+  <h2>Choose your rooms or read reviews from other guests</h2>
+
 
 <%= render "shared/rates" %>
 
@@ -9,3 +15,4 @@
     <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
   <% end %>
 </div>
+<% end %>
