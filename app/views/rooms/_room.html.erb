@@ -2,7 +2,7 @@
 <div id="<%= dom_id room %>">
   <p>
     <strong>Room name:</strong>
-    <%= room.title %>
+    <%= link_to room.title, room %>
   </p>
 
   <p>
@@ -24,10 +24,8 @@
 <div>
   <% if params[:action] == "show" %>
     <%= link_to "Back to rooms", rooms_path %>
-  <% elsif params[:action] == "index" %>
-    <%= link_to "Show this room", room_path(room) %>
   <% end %>
 </div>
 <p>
-  <%= link_to "Booking this room", new_booking_path(room: room) %>
+  <%= link_to "Booking this room", new_booking_path(room) %>
 </p>
