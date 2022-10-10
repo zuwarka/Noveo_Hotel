@@ -1,0 +1,13 @@
+<% headers = ['status', 'username', 'email', 'check_in', 'check_out', 'people', 'room_id', 'created_at', 'updated_at'] %>
+<%= CSV.generate_line headers %>
+<% @bookings.each do |booking| %>
+  <%= CSV.generate_line([booking.status,
+                         booking.username,
+                         booking.email,
+                         booking.check_in,
+                         booking.check_out,
+                         booking.people,
+                         booking.room_id,
+                         booking.created_at,
+                         booking.updated_at]) %>
+<% end %>

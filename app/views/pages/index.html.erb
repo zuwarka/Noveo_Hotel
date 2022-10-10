@@ -7,12 +7,12 @@
   <h2>Choose your rooms or read reviews from other guests</h2>
 
 
-<%= render "shared/rates" %>
+  <%= render 'shared/rates' %>
 
-<div>
-  <hr />
-  <% @room&.room_photos&.each do |photo| %>
-    <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
-  <% end %>
-</div>
+  <div>
+    <hr />
+    <% @hotel_rooms_photo.each do |photo| %>
+      <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
+    <% end %>
+  </div>
 <% end %>
