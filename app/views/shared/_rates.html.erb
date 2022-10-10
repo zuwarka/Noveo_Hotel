@@ -1,4 +1,14 @@
-<h3>Exchange rates</h3>
+<div class="container px-5">
+  <div class="row gx-5 align-items-left justify-content-left">
+    <div class="col-lg-8 col-xl-7 col-xxl-6">
+      <div class="my-5 text-left text-xl-start">
+        <h3 class="display-5 fw-border text-white mb-2">Exchange rates</h3>
+        <p class="lead fw-normal text-white-50 mb-4"></p>
+
+      </div>
+    </div>
+  </div>
+</div>
 <script>
     function CBR_XML_Daily_Ru(rates) {
         function trend(current, previous) {
@@ -7,36 +17,44 @@
             return '';
         }
 
-        var USDrate = rates.Valute.USD.Value.toFixed(4).replace('.', ',');
+        var USDrate = rates.Valute.USD.Value.toFixed(2).replace('.', ',');
         var USD = document.getElementById('USD');
-        USD.innerHTML = USD.innerHTML.replace('00,0000', USDrate);
+        USD.innerHTML = USD.innerHTML.replace('00,00', USDrate);
         USD.innerHTML += trend(rates.Valute.USD.Value, rates.Valute.USD.Previous);
 
-        var EURrate = rates.Valute.EUR.Value.toFixed(4).replace('.', ',');
+        var EURrate = rates.Valute.EUR.Value.toFixed(2).replace('.', ',');
         var EUR = document.getElementById('EUR');
-        EUR.innerHTML = EUR.innerHTML.replace('00,0000', EURrate);
+        EUR.innerHTML = EUR.innerHTML.replace('00,00', EURrate);
         EUR.innerHTML += trend(rates.Valute.EUR.Value, rates.Valute.EUR.Previous);
 
-        var AMDrate = rates.Valute.AMD.Value.toFixed(4).replace('.', ',');
+        var AMDrate = rates.Valute.AMD.Value.toFixed(2).replace('.', ',');
         var AMD = document.getElementById('AMD');
-        AMD.innerHTML = AMD.innerHTML.replace('00,0000', AMDrate);
+        AMD.innerHTML = AMD.innerHTML.replace('00,00', AMDrate);
         AMD.innerHTML += trend(rates.Valute.AMD.Value, rates.Valute.AMD.Previous);
 
-        var KZTrate = rates.Valute.KZT.Value.toFixed(4).replace('.', ',');
+        var KZTrate = rates.Valute.KZT.Value.toFixed(2).replace('.', ',');
         var KZT = document.getElementById('KZT');
-        KZT.innerHTML = KZT.innerHTML.replace('00,0000', KZTrate);
+        KZT.innerHTML = KZT.innerHTML.replace('00,00', KZTrate);
         KZT.innerHTML += trend(rates.Valute.KZT.Value, rates.Valute.KZT.Previous);
 
-        var TRYrate = rates.Valute.TRY.Value.toFixed(4).replace('.', ',');
+        var TRYrate = rates.Valute.TRY.Value.toFixed(2).replace('.', ',');
         var TRY = document.getElementById('TRY');
-        TRY.innerHTML = TRY.innerHTML.replace('00,0000', TRYrate);
+        TRY.innerHTML = TRY.innerHTML.replace('00,00', TRYrate);
         TRY.innerHTML += trend(rates.Valute.TRY.Value, rates.Valute.TRY.Previous);
     }
 </script>
 <link rel="dns-prefetch" href="https://www.cbr-xml-daily.ru/" />
 <script src="//www.cbr-xml-daily.ru/daily_jsonp.js" async></script>
-<div id="USD">US Dollar - 00,0000 rub.</div>
-<div id="EUR">Euro - 00,0000 rub.</div>
-<div id="AMD">Armenian Dram - 00,0000 rub.</div>
-<div id="KZT">Qazaqstan Tenge - 00,0000 rub.</div>
-<div id="TRY">Turkiye Lira - 00,0000 rub.</div>
+<div class="container px-5">
+  <div class="row gx-5 align-items-left justify-content-left">
+    <div class="col-lg-8 col-xl-7 col-xxl-6">
+      <div class="my-5 text-left text-xl-start">
+        <div id="USD">1 US Dollar - 00,00 rub.</div>
+        <div id="EUR">1 Euro - 00,00 rub.</div>
+        <div id="AMD">1 Armenian Dram - 00,00 rub.</div>
+        <div id="KZT">1 Qazaqstan Tenge - 00,00 rub.</div>
+        <div id="TRY">1 Turkiye Lira - 00,00 rub.</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,20 +2,28 @@
 
 <%= link_to "Download as CSV", "export.csv" %>
 <%= link_to "Download as XLSX", "export.xlsx" %>
+<style>
+    table, th, td {
+        border: 2px solid white;
+    }
 
-<table border="2">
+    th, td {
+        background-color: #DCDCDC;
+    }
+</style>
+<table class="table">
   <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>People</th>
-    <th>Room id</th>
-    <th>Check in</th>
-    <th>Check out</th>
-    <th>Status</th>
-    <th>Created at</th>
-    <th>Updated at</th>
-    <th>Confirm</th>
-    <th>Destroy</th>
+    <th scope="col">Username</th>
+    <th scope="col">Email</th>
+    <th scope="col">People</th>
+    <th scope="col">Room id</th>
+    <th scope="col">Check in</th>
+    <th scope="col">Check out</th>
+    <th scope="col">Status</th>
+    <th scope="col">Created at</th>
+    <th scope="col">Updated at</th>
+    <th scope="col">Confirm</th>
+    <th scope="col">Destroy</th>
   </tr>
   <% @bookings.each do |admin_booking| %>
     <tr>
@@ -29,7 +37,7 @@
       <td><%= admin_booking.created_at %></td>
       <td><%= admin_booking.updated_at %></td>
       <td><%= button_to "Confirm", confirmation_admin_booking_path(admin_booking), method: :get, class: "btn btn-xs btn-warning" %></td>
-      <td><%= button_to "Destroy", admin_booking_path(admin_booking), method: :delete, class: "btn btn-xs btn-warning" %></td>
+      <td><%= button_to "Destroy", admin_booking_path(admin_booking), method: :delete, class: "btn btn-xs btn-danger" %></td>
     </tr>
   <% end %>
 </table>
