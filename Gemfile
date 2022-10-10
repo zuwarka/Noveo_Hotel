@@ -80,4 +80,14 @@ gem "sidekiq", "~> 6.5"
 
 gem "httparty"
 
+gem "csv"
 
+#gem "rubyXL"
+
+#gem 'rubyzip'
+
+gem 'caxlsx'
+
+gem 'caxlsx_rails'
+
+gem 'axlsx_rails'

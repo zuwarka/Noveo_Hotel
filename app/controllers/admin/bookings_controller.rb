@@ -1,3 +1,4 @@
+require 'csv'
 class Admin::BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_booking, only: %i[show edit update destroy confirmation]
@@ -32,8 +33,26 @@ class Admin::BookingsController < ApplicationController
     elsif @booking.confirmed?
       @booking.pended!
     end
+    respond_to do |f|
+      f.html { redirect_to admin_bookings_url, notice: "Booking status was updated." }
+    end
+  end
 
-    redirect_to admin_bookings_url, notice: "Booking status was updated."
+  def export
+    @bookings = Booking.confirmed_bookings
+    respond_to do |f|
+      f.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment;filename=confirmed_bookings.csv"
+        render template: "admin/bookings/index"
+      end
+
+      f.xlsx do
+        response.headers['Content-Type'] = 'text/xlsx'
+        response.headers['Content-Disposition'] = "attachment;filename=confirmed_bookings.xlsx"
+        render xlsx: 'bookings', template: "admin/bookings/index"
+      end
+    end
   end
 
   private
