@@ -1,18 +1,60 @@
-<% if user_signed_in? %>
-    <div>
-      <h3>Welcome, admin!</h3>
+<head>
+
+</head>
+
+<body>
+
+</body>
+
+<header class="bg-dark py-5">
+  <% if user_signed_in? %>
+
+    <div class="container px-5">
+      <div class="row gx-5 align-items-left justify-content-left">
+        <div class="col-lg-8 col-xl-7 col-xxl-6">
+          <div class="my-5 text-left text-xl-start">
+            <h3 class="display-5 fw-border text-white mb-2">Welcome, admin!</h3>
+            <p class="lead fw-normal text-white-50 mb-4"></p>
+          </div>
+        </div>
+      </div>
     </div>
-<% else %>
-  <h1>Welcome to "Noveo" Hotel!</h1>
-  <h2>Choose your rooms or read reviews from other guests</h2>
 
+  <% else %>
 
-  <%= render 'shared/rates' %>
+    <div class="container px-5">
+      <div class="row gx-5 align-items-left justify-content-left">
+        <div class="col-lg-8 col-xl-7 col-xxl-6">
+          <div class="my-5 text-left text-xl-start">
+            <h1 class="display-5 fw-border text-white mb-2">Welcome to "Noveo" Hotel!</h1>
+            <h2 class="display-5 fw-border text-white mb-2">Choose your rooms or read reviews from other guests</h2>
+            <p class="lead fw-normal text-white-50 mb-4">This is our great hotel for workers and stuff.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <hr />
-    <% @hotel_rooms_photo.each do |photo| %>
-      <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
-    <% end %>
-  </div>
-<% end %>
+    <%= render 'shared/rates' %>
+<br>
+    <div class="container px-5">
+        <div class="col-lg-8 col-xl-7 col-xxl-6">
+          <div class="row gx-5">
+          <% @rooms.find_each do |room| %>
+            <div class="col-lg-8 mb-4">
+              <% room.room_photos.limit(1).find_each do |photo| %>
+                <div><%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %></div>
+              <% end %>
+
+              <div class="card-body p-4">
+              <h5 class="card-title mb-3"><%= link_to room.title, room %></h5>
+                <p><%= room.price %> AMD for one night</p>
+              </div>
+              <hr/>
+            </div>
+          <% end %>
+          </div>
+        </div>
+    </div>
+
+  <% end %>
+</header>

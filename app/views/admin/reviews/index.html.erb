@@ -1,15 +1,23 @@
 <h1>Table of reviews</h1>
+<style>
+    table, th, td {
+        border: 2px solid white;
+    }
 
-<table border="2">
+    th, td {
+        background-color: #DCDCDC;
+    }
+</style>
+<table class="table">
   <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Created at</th>
-    <th>Updated at</th>
-    <th>Status</th>
-    <th>Destroy</th>
+    <th scope="col">Username</th>
+    <th scope="col">Email</th>
+    <th scope="col">Description</th>
+    <th scope="col">Status</th>
+    <th scope="col">Created at</th>
+    <th scope="col">Updated at</th>
+    <th scope="col">Status</th>
+    <th scope="col">Destroy</th>
   </tr>
   <% @reviews.each do |admin_review| %>
     <tr>
@@ -20,7 +28,7 @@
       <td><%= admin_review.created_at %></td>
       <td><%= admin_review.updated_at %></td>
       <td><%= button_to "Confirm", confirmation_admin_review_path(admin_review), method: :get, class: "btn btn-xs btn-warning" %></td>
-      <td><%= button_to "Destroy", admin_review_path(admin_review), method: :delete %></td>
+      <td><%= button_to "Destroy", admin_review_path(admin_review), method: :delete, class: "btn btn-xs btn-danger" %></td>
     </tr>
   <% end %>
 </table>
