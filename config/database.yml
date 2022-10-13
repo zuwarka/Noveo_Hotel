@@ -30,3 +30,4 @@ production:
   <<: *default
   #database: db/production.sqlite3
   database: noveo_hotel_production
+  host: 0.0.0.0
