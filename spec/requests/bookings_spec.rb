@@ -1,15 +1,36 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'date'
 # rubocop:disable Metrics/BlockLength
 RSpec.describe '/bookings', type: :request do
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      username: Faker::Internet.username,
+      email: Faker::Internet.email,
+      status: 1,
+      check_in: DateTime.new(2022, 10, 10),
+      check_out: DateTime.new(2022, 12, 12),
+      people: Random.rand(1..10),
+      room_id: 1
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      username: "",
+      email: "",
+      status: 1,
+      check_in: "",
+      check_out: "",
+      people: "",
+      room_id: 0
+    }
   end
+
+  before {
+    Room.create!(id: 1, title: "I am the room", description: "I am description", price: 300)
+  }
 
   describe 'GET /index' do
     it 'renders a successful response' do
@@ -29,7 +50,8 @@ RSpec.describe '/bookings', type: :request do
 
   describe 'GET /new' do
     it 'renders a successful response' do
-      get new_booking_url
+      Booking.create! valid_attributes
+      get new_booking_url, params: { room_id: '1""' }
       expect(response).to be_successful
     end
   end
@@ -57,7 +79,7 @@ RSpec.describe '/bookings', type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post bookings_url, params: { booking: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
@@ -87,7 +109,7 @@ RSpec.describe '/bookings', type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         booking = Booking.create! valid_attributes
         patch booking_url(booking), params: { booking: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
