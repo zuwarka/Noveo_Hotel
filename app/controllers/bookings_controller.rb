@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show edit update destroy confirmation]
   def index
@@ -15,7 +17,7 @@ class BookingsController < ApplicationController
   def update
     respond_to do |f|
       if @booking.update(booking_params)
-        f.html { redirect_to booking_url(@booking), notice: "Booking was updated." }
+        f.html { redirect_to booking_url(@booking), notice: 'Booking was updated.' }
       else
         f.html { render :edit, status: :bad_request }
       end
@@ -26,7 +28,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     respond_to do |f|
       if @booking.save
-        f.html { redirect_to booking_url(@booking), notice: "Booking was created." }
+        f.html { redirect_to booking_url(@booking), notice: 'Booking was created.' }
       else
         f.html { render :new, status: :bad_request }
       end
@@ -36,13 +38,11 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |f|
-      f.html { redirect_to bookings_url, notice: "Booking was destroyed." }
+      f.html { redirect_to bookings_url, notice: 'Booking was destroyed.' }
     end
   end
 
-  def edit
-
-  end
+  def edit; end
 
   private
 

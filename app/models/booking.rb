@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Booking < ApplicationRecord
   belongs_to :room
   enum status: { pended: 0, confirmed: 1 }
@@ -15,9 +17,7 @@ class Booking < ApplicationRecord
 
   def rooms_are_available
     @booked_rooms = Room.available_rooms(check_in, check_out)
-    if @booked_rooms.include?(self.room_id)
-      errors.add("This room is not available for these dates.")
-    end
+    errors.add('This room is not available for these dates.') if @booked_rooms.include?(room_id)
   end
 
   def enqueue
@@ -25,7 +25,7 @@ class Booking < ApplicationRecord
   end
 
   def self.to_csv
-    CSV.generate(col_step: ";") do |csv|
+    CSV.generate(col_step: ';') do |csv|
       csv << attribute_names
       confirmed_bookings.find_each do |record|
         csv << record.attributes.values

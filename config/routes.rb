@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
-    #get '/users/log_in' => 'devise/sessions#new'
+    # get '/users/log_in' => 'devise/sessions#new'
   end
-  root "pages#index"
+  root 'pages#index'
   resources :rooms
   resources :bookings
   resources :reviews
@@ -25,11 +27,10 @@ Rails.application.routes.draw do
     get '/admin/dashboard', as: :authenticated_root
     get 'dashboard', to: 'pages#dashboard'
     get 'export(.:format)', to: 'bookings#export'
-
   end
   unauthenticated :users do
     namespace :admin do
-      root :to => 'session#new', as: :unauthenticated_root
+      root to: 'session#new', as: :unauthenticated_root
     end
   end
 end

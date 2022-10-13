@@ -1,81 +1,81 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+# rubocop:disable Metrics/BlockLength
+RSpec.describe '/reviews', type: :request do
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-RSpec.describe "/reviews", type: :request do
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Review.create! valid_attributes
       get reviews_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       review = Review.create! valid_attributes
       get review_url(review)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_review_url
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Review" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Review' do
+        expect do
           post reviews_url, params: { review: valid_attributes }
-        }.to change(Review, :count).by(1)
+        end.to change(Review, :count).by(1)
       end
 
-      it "redirects to the created review" do
+      it 'redirects to the created review' do
         post reviews_url, params: { review: valid_attributes }
         expect(response).to redirect_to(review_url(Review.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Review" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new Review' do
+        expect do
           post reviews_url, params: { review: invalid_attributes }
-        }.to change(Review, :count).by(0)
+        end.to change(Review, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post reviews_url, params: { review: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested review" do
+      it 'updates the requested review' do
         review = Review.create! valid_attributes
         patch review_url(review), params: { review: new_attributes }
         review.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the review" do
+      it 'redirects to the review' do
         review = Review.create! valid_attributes
         patch review_url(review), params: { review: new_attributes }
         review.reload
@@ -83,29 +83,28 @@ RSpec.describe "/reviews", type: :request do
       end
     end
 
-    context "with invalid parameters" do
-    
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         review = Review.create! valid_attributes
         patch review_url(review), params: { review: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested review" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested review' do
       review = Review.create! valid_attributes
-      expect {
+      expect do
         delete review_url(review)
-      }.to change(Review, :count).by(-1)
+      end.to change(Review, :count).by(-1)
     end
 
-    it "redirects to the reviews list" do
+    it 'redirects to the reviews list' do
       review = Review.create! valid_attributes
       delete review_url(review)
       expect(response).to redirect_to(reviews_url)
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[show]
   def index
@@ -5,7 +7,7 @@ class RoomsController < ApplicationController
   end
 
   def show
-    #@room.room_photos.all
+    # @room.room_photos.all
     @booking = Booking.new
   end
 
