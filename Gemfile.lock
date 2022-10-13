@@ -71,9 +71,6 @@ GEM
     ast (2.4.2)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
-    axlsx_rails (0.6.1)
-      actionpack (>= 3.1)
-      caxlsx (>= 3.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
@@ -345,7 +342,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  axlsx_rails
   bootsnap
   bootstrap-sass (~> 3.3.6)
   bootstrap-will_paginate (= 1.0.0)
