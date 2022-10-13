@@ -96,4 +96,4 @@ gem 'caxlsx'
 
 gem 'caxlsx_rails'
 
-gem 'axlsx_rails'
+#gem 'axlsx_rails'
