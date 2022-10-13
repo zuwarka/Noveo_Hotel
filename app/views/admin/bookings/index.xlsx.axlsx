@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 wb = xlsx_package.workbook
-wb.add_worksheet(name: "confirmed_bookings") do |sheet|
-sheet.add_row ['status',
-'username',
-'email',
-'check_in',
-'check_out',
-'people',
-'room_id',
-'created_at',
-'updated_at']
-@bookings.each do |booking|
-sheet.add_row [booking.status,
-booking.username,
-booking.email,
-booking.check_in,
-booking.check_out,
-booking.people,
-booking.room_id,
-booking.created_at,
-booking.updated_at]
-end
+wb.add_worksheet(name: 'confirmed_bookings') do |sheet|
+  sheet.add_row %w[status
+                   username
+                   email
+                   check_in
+                   check_out
+                   people
+                   room_id
+                   created_at
+                   updated_at]
+  @bookings.each do |booking|
+    sheet.add_row [booking.status,
+                   booking.username,
+                   booking.email,
+                   booking.check_in,
+                   booking.check_out,
+                   booking.people,
+                   booking.room_id,
+                   booking.created_at,
+                   booking.updated_at]
+  end
 end

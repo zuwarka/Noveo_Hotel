@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show]
   def index
@@ -5,9 +7,7 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
-  def show
-
-  end
+  def show; end
 
   def new
     @review = Review.new
@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
 
     respond_to do |f|
       if @review.save
-        f.html { redirect_to review_url(@review), notice: "Review was created." }
+        f.html { redirect_to review_url(@review), notice: 'Review was created.' }
       else
         f.html { render :new }
       end

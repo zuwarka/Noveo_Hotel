@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "bookings/show", type: :view do
+RSpec.describe 'bookings/show', type: :view do
   before(:each) do
-    @booking = assign(:booking, Booking.create!())
+    @booking = assign(:booking, Booking.create!)
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
   end
 end
