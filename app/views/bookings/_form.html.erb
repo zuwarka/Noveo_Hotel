@@ -1,10 +1,10 @@
-<%= form_with(model: booking) do |form| %>
-  <% if booking.errors.any? %>
+<%= form_with(model: @booking) do |form| %>
+  <% if @booking.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
       <ul>
-        <% booking.errors.each do |error| %>
+        <% @booking.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -38,7 +38,7 @@
 
   <div>
     <%= form.label :room_id, style: "display: block" %>
-    <%= form.number_field :room_id, autofocus: true %>
+    <%= form.number_field :room_id, :value => room_id %>
   </div>
 
 

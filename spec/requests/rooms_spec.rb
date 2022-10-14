@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-# rubocop:disable Metrics/BlockLength
 RSpec.describe '/rooms', type: :request do
   let(:valid_attributes) do
     {
@@ -13,9 +12,9 @@ RSpec.describe '/rooms', type: :request do
 
   let(:invalid_attributes) do
     {
-      title: "",
-      description: "",
-      price: ""
+      title: '',
+      description: '',
+      price: ''
     }
   end
 
@@ -35,4 +34,3 @@ RSpec.describe '/rooms', type: :request do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

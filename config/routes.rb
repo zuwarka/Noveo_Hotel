@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get '/admin/dashboard', as: :authenticated_root
     get 'dashboard', to: 'pages#dashboard'
     get 'export(.:format)', to: 'bookings#export'
+    post '/admin/rooms/new', to: 'rooms#create'
   end
   unauthenticated :users do
     namespace :admin do

@@ -13,9 +13,9 @@ RSpec.describe '/reviews', type: :request do
 
   let(:invalid_attributes) do
     {
-      title: "",
-      description: "",
-      price: ""
+      title: '',
+      description: '',
+      price: ''
     }
   end
 

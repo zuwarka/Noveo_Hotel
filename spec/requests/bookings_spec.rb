@@ -18,19 +18,19 @@ RSpec.describe '/bookings', type: :request do
 
   let(:invalid_attributes) do
     {
-      username: "",
-      email: "",
+      username: '',
+      email: '',
       status: 1,
-      check_in: "",
-      check_out: "",
-      people: "",
+      check_in: '',
+      check_out: '',
+      people: '',
       room_id: 0
     }
   end
 
-  before {
-    Room.create!(id: 1, title: "I am the room", description: "I am description", price: 300)
-  }
+  before do
+    Room.create!(id: 1, title: 'I am the room', description: 'I am description', price: 300)
+  end
 
   describe 'GET /index' do
     it 'renders a successful response' do

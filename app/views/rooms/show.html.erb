@@ -1,3 +1,36 @@
+<h2>Book this room right now!</h2>
+<h4>Just slide down this page...</h4>
 <div class="well well-lg">
-  <%= render @room %>
+    <div class="row">
+      <div class="col-xs-8">
+        <div class="well well-lg">
+          <div class="review-title">
+            <p>
+              <%= @room.title %>
+            </p>
+          </div>
+          <div class="review-title">
+            <p><strong>Price</strong>: <%= @room.price %> AMD per one night</p>
+          </div>
+          <div class="review-body">
+            <p>
+              <%= @room.description %>
+            </p>
+          </div>
+          <hr />
+          <% @room.room_photos.each do |photo| %>
+            <%= link_to image_tag(photo, style:"width:200px; height:200px"), photo %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <hr/>
+  <% if params[:action] == "show" %>
+    <%= link_to "Back to rooms", rooms_path %>
+  <% end %>
+</div>
+
+<div>
+  <%= render :partial => '/bookings/form', :locals => { :room_id => @room.id } %>
 </div>

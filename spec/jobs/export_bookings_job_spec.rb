@@ -14,12 +14,10 @@ RSpec.describe ExportBookingsJob, type: :job do
     end
 
     it 'will generate log files' do
-      begin
-        ExportBookingsJob.perform_now
-        expect(File.exist?('confirmed_bookings.csv')).to eq(true)
-        expect(File.exist?('confirmed_bookings.xlsx')).to eq(true)
-        rescue ArgumentError # very bad but i don't what to do here :(
-      end
+      ExportBookingsJob.perform_now
+      expect(File.exist?('confirmed_bookings.csv')).to eq(true)
+      expect(File.exist?('confirmed_bookings.xlsx')).to eq(true)
+    rescue ArgumentError # very bad but i don't what to do here :(
     end
   end
 end

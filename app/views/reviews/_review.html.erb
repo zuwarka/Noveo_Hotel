@@ -1,16 +1,21 @@
-<div>
-  <p>
-    <strong>Username:</strong>
-    <%= review.username %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= review.email %>
-  </p>
-
-  <p>
-    <strong>Text:</strong>
-    <%= review.description %>
-  </p>
+<div class="row">
+  <div class="col-xs-8">
+    <div class="well well-lg">
+      <div class="review-title">
+        <p>
+          <strong>Username:</strong>
+          <%= review.username %>
+        </p>
+      </div>
+      <div class="review-title">
+        <p>
+          <strong>Email:</strong>
+          <%= review.email %>
+        </p>
+      </div>
+      <div class="review-body">
+        <%= truncate(review.description, length: 100) %>
+      </div>
+    </div>
+  </div>
 </div>
