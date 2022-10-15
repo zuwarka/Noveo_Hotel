@@ -1,0 +1,26 @@
+web:
+  build: .
+  volumes:
+    - .:/myapp
+  links:
+    - db
+    - redis
+  ports:
+    - "3000:3000"
+  env_file:
+    - .env/development/web
+  command: bundle exec rails server -b 0.0.0.0
+sidekiq:
+  build: .
+  volumes:
+    - .:/myapp
+  links:
+    - db
+    - redis
+  command: bundle exec sidekiq
+db:
+  image: postgres
+  env_file:
+    - .env/development/db
+  redis:
+    image: redis
